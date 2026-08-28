@@ -1,0 +1,22 @@
+# model artifacts — never commit weights
+*.gguf
+*.safetensors
+*.bin
+*.npz
+models/
+
+# experiment artifacts
+analysis/traces/
+results/raw/
+*.parquet
+*.arrow
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+
+# macOS / editors
+.DS_Store
+.vscode/
+.idea/
