@@ -77,6 +77,39 @@ def model_wide(summary, group, target):
     return out
 
 
+def independence(summary, group, target, k):
+    """Byte-weighted union sparsity that *independent* per-token masks would give.
+
+    If a column's activity were independent across adjacent tokens, the chance it is
+    inactive for all k of them is s^k, where s is that site's per-token sparsity.
+    Computed per site, then byte-weighted -- the same weighting as everything else.
+    """
+    w = weights(summary["sites"])
+    s_pt = pooled(summary, group, target, "per_token_sparsity")
+    return wmean(s_pt ** k, w)
+
+
+def bandwidth_table(summary, group, target):
+    """Bytes read per verification pass, and what that caps the speedup at.
+
+    A verification pass reads (1 - union_sparsity_k) of the trunk weights. Adding
+    union-mask sparsity on top of an MTP pass therefore buys at most 1/(1-u_k) --
+    before index-collection overhead, before kernel inefficiency, before any quality
+    cost. Compare against H3's >=1.25x gate.
+    """
+    mw = model_wide(summary, group, target)
+    rows = []
+    rows.append(["dense (k=1, no sparsity)", "1.000", "1.00x", "—"])
+    rows.append([f"sparse GEMV, batch 1 (SpQt regime)",
+                 f"{1 - mw['per_token']:.3f}", f"{1 / (1 - mw['per_token']):.2f}x",
+                 pct(mw["per_token"])])
+    for k in range(2, K_MAX + 1):
+        u = mw[f"k{k}"]
+        rows.append([f"union-mask verification, k={k}", f"{1 - u:.3f}",
+                     f"{1 / (1 - u):.2f}x", pct(u)])
+    return rows
+
+
 def per_trace_stats(summary, group, target, key):
     """Between-trace mean / sd / sem of a model-wide statistic."""
     v = [t["agg"][f"{target:.2f}"]["model_wide"][key]
@@ -176,6 +209,48 @@ def render(summary):
                     "k=4 sem", "Jaccard"], rows), ""]
     L += ["`target` is the calibration quantile; `per-token` is the sparsity actually "
           "realized on the measurement split under those **fixed** thresholds.", ""]
+
+    # ---- overlap vs. an independence baseline -------------------------------
+    L += ["## Measured overlap vs. independent masks", "",
+          "If activity were independent across adjacent tokens, k-token union "
+          "sparsity would be `s^k` for per-token sparsity `s`. The excess ratio "
+          "below is how much better than that the real masks do — i.e. how much "
+          "adjacent-token structure actually exists.", ""]
+    rows = []
+    for g in ("agentic", "control"):
+        for t in targets:
+            mw = A(g, t)
+            for k in range(2, K_MAX + 1):
+                b = independence(summary, g, t, k)
+                rows.append([g, f"{t:.0%}", k, pct(mw[f"k{k}"]), pct(b),
+                             f"{mw[f'k{k}'] / b:.2f}x" if b > 0 else "—"])
+    L += [md_table(["corpus", "target", "k", "measured", "if independent",
+                    "excess"], rows), ""]
+
+    # what per-token sparsity would be needed to reach the H1 gate
+    r4 = mw50["k4"] / max(independence(summary, "agentic", 0.50, 4), 1e-12)
+    need = (H1_PASS_50 / r4) ** 0.25
+    L += [f"Holding that excess ratio fixed, reaching the H1 gate "
+          f"(≥{H1_PASS_50:.0%} union sparsity at k=4) would require a per-token "
+          f"sparsity of **{need:.0%}** — above the ~65% level at which SpQt reports "
+          f"perplexity degradation becomes noticeable (`docs/01`).", ""]
+
+    # ---- bandwidth arithmetic ------------------------------------------------
+    L += ["## What this buys: bytes per pass (agentic, per-token target 50%)", "",
+          "Decode on this model is bandwidth-bound, so a pass that reads a fraction "
+          "`f` of the trunk weights runs at `1/f` the cost. MTP verification "
+          "processes k draft tokens in one pass, so the sparsity available to it is "
+          "the k-token union, not the per-token figure.", ""]
+    L += [md_table(["configuration", "fraction of trunk weights read",
+                    "ceiling vs. dense pass", "sparsity exploited"],
+                   bandwidth_table(summary, "agentic", 0.50)), ""]
+    k4c = 1 / (1 - mw50["k4"])
+    k2c = 1 / (1 - mw50["k2"])
+    L += [f"Adding union-mask sparsity to an MTP pass is therefore capped at "
+          f"**{k4c:.2f}×** at k=4 (**{k2c:.2f}×** at k=2), against H3's ≥1.25× gate — "
+          f"and that is an upper bound that ignores index-collection overhead, "
+          f"kernel inefficiency (SpQt reaches ~75–89% of ideal on GEMV), and any "
+          f"quality cost from union masking.", ""]
 
     # ---- per class ----------------------------------------------------------
     for t in targets:
@@ -340,6 +415,29 @@ def check():
         0.3005, 0.2005, sd=0.05)["verdict"])
     t("fail above kill floor flagged", "H1 FAILS" in verdict_for(
         0.25, 0.22)["verdict"])
+
+    # independence baseline and bandwidth arithmetic
+    s3 = synth_summary(seed=11)
+    for g in ("agentic", "control"):
+        for tg in (0.25, 0.40, 0.50):
+            d = s3["groups"][g][f"{tg:.2f}"]
+            d["per_token_sparsity"] = [0.5] * len(s3["sites"])
+            for k in range(2, K_MAX + 1):
+                d[f"union_sparsity_k{k}"] = [0.5 ** k] * len(s3["sites"])
+    t("independence baseline = s^k",
+      all(abs(independence(s3, "agentic", 0.50, k) - 0.5 ** k) < 1e-12
+          for k in (2, 3, 4)))
+    t("excess ratio is 1.0 for independent masks",
+      abs(model_wide(s3, "agentic", 0.50)["k4"] /
+          independence(s3, "agentic", 0.50, 4) - 1.0) < 1e-9)
+    bt = bandwidth_table(s3, "agentic", 0.50)
+    t("bandwidth: dense row is 1.000/1.00x", bt[0][1] == "1.000" and bt[0][2] == "1.00x")
+    t("bandwidth: k=4 ceiling = 1/(1-1/16)",
+      abs(float(bt[-1][2][:-1]) - 1 / (1 - 0.0625)) < 5e-3)
+    t("bandwidth: batch-1 row uses per-token sparsity",
+      abs(float(bt[1][1]) - 0.5) < 1e-9)
+    t("bandwidth rows monotone in bytes read",
+      all(float(bt[i][1]) <= float(bt[i + 1][1]) for i in range(1, len(bt) - 1)))
 
     # md_table alignment
     tb = md_table(["a", "bb"], [["1", "2"], ["333", "4"]])

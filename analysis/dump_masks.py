@@ -61,6 +61,18 @@ COARSE = {
 # --------------------------------------------------------------------------
 # environment capture (results/README.md requires this on every run)
 # --------------------------------------------------------------------------
+def _powermode_ac(text):
+    in_ac = False
+    for line in text.splitlines():
+        if line.strip().startswith("AC Power"):
+            in_ac = True
+        elif line.strip().endswith("Power:") or line.strip().startswith("Battery Power"):
+            in_ac = False
+        if in_ac and "powermode" in line:
+            return line.split()[-1]
+    return "?"
+
+
 def env_info():
     def sh(*c):
         try:
@@ -76,9 +88,9 @@ def env_info():
         "ram_bytes": int(sh("sysctl", "-n", "hw.memsize") or 0),
         "iogpu_wired_limit_mb": sh("sysctl", "-n", "iogpu.wired_limit_mb"),
         "power": "AC" if "AC Power" in sh("pmset", "-g", "ps") else "battery",
-        "powermode_ac": next(
-            (l.split()[-1] for l in sh("pmset", "-g", "custom").splitlines()
-             if "powermode" in l), "?"),
+        # `pmset -g custom` prints a Battery Power block then an AC Power block;
+        # take powermode from the AC block (2 = High Power), not the first match
+        "powermode_ac": _powermode_ac(sh("pmset", "-g", "custom")),
         "python": platform.python_version(),
         "mlx": mx.__version__,
         "mlx_lm": mlx_lm.__version__,
@@ -309,11 +321,23 @@ def cmd_calibrate(args):
 # measure
 # --------------------------------------------------------------------------
 class Acc:
-    """Streaming per-site accumulators for one threshold level."""
+    """Streaming per-site accumulators for one threshold level.
 
-    def __init__(self, n_sites, offs, thr_vec):
+    `thr_vec` is the fixed calibrated threshold, broadcast per element. If `oracle`
+    is set, the fixed threshold is ignored and each token instead gets an *exact*
+    per-site quantile, so every token realizes precisely the target sparsity. That
+    is not implementable in a kernel (the threshold would have to be recomputed from
+    the activation itself), but it isolates one confound: with a fixed threshold,
+    tokens that happen to be less sparse than the target contribute extra active
+    columns and inflate every union they take part in. The oracle variant bounds how
+    much of the measured union sparsity is lost to that variance.
+    """
+
+    def __init__(self, n_sites, offs, thr_vec, oracle=None, dims=None):
         self.offs = offs
         self.thr = thr_vec
+        self.oracle = oracle          # target sparsity, or None
+        self.dims = dims
         self.n = np.zeros(n_sites, np.int64)          # tokens seen
         self.act = np.zeros(n_sites, np.int64)        # Σ per-token active
         self.uni = {k: np.zeros(n_sites, np.int64) for k in range(2, K_MAX + 1)}
@@ -323,8 +347,22 @@ class Acc:
         self.win = []                                 # rolling masks, newest last
         self.prev_act = None
 
+    def _mask(self, fa):
+        if self.oracle is None:
+            return fa >= self.thr
+        m = np.empty(fa.shape, dtype=bool)
+        for i, (o, d) in enumerate(zip(self.offs, self.dims)):
+            v = fa[o:o + d]
+            n_off = min(max(int(round(self.oracle * d)), 0), d)   # columns pruned
+            if n_off == 0:
+                m[o:o + d] = True
+            else:
+                # keep the n_off smallest inactive: threshold at the n_off-th smallest
+                m[o:o + d] = v > np.partition(v, n_off - 1)[n_off - 1]
+        return m
+
     def push(self, fa):
-        m = fa >= self.thr
+        m = self._mask(fa)
         red = lambda a: np.add.reduceat(a, self.offs, dtype=np.int64)
         a = red(m)
         self.n += 1
@@ -402,6 +440,7 @@ def cmd_measure(args):
     offs = np.cumsum([0] + [s["dim"] for s in sites]).astype(np.int64)[:-1]
     dims = [s["dim"] for s in sites]
 
+    orc = args.oracle or None
     groups = {}      # trace-kind -> {target -> Acc}
     for kind in ("agentic", "control"):
         groups[kind] = {}
@@ -409,7 +448,8 @@ def cmd_measure(args):
             tv = np.concatenate([
                 np.full(d, cal["thresholds"][s["key"]][f"{q:.2f}"], np.float32)
                 for s, d in zip(sites, dims)])
-            groups[kind][q] = Acc(len(sites), offs, tv)
+            groups[kind][q] = Acc(len(sites), offs, tv,
+                                  oracle=(q if orc else None), dims=dims)
 
     traces = read_traces(args.traces, {"agentic", "control"})
     if args.limit_traces:
@@ -421,7 +461,8 @@ def cmd_measure(args):
             a.reset_window()          # windows never span a trace boundary
         # a second, per-trace set of accumulators gives between-trace error bars,
         # which is what separates "PASS with margin" from "within noise"
-        solo = {q: Acc(len(sites), offs, accs[q].thr) for q in TARGETS}
+        solo = {q: Acc(len(sites), offs, accs[q].thr,
+                       oracle=(q if orc else None), dims=dims) for q in TARGETS}
 
         def on_token(fa, accs=accs, solo=solo):
             for a in accs.values():
@@ -444,7 +485,10 @@ def cmd_measure(args):
         "kind": "phase0-summary",
         "model": args.model,
         "thresholds_file": os.path.basename(args.thresholds),
-        "threshold_method": cal["method"],
+        "threshold_method": ("exact per-token per-site quantile (ORACLE; not "
+                             "kernel-implementable, sensitivity check only)"
+                             if orc else cal["method"]),
+        "oracle": bool(orc),
         "targets": list(TARGETS),
         "k_max": K_MAX,
         "env": env_info(),
@@ -480,6 +524,20 @@ def cmd_selftest(_):
     assert d["union_windows_k2"] == [1, 1] and d["union_windows_k3"] == [0, 0]
     # union sparsity must never exceed per-token sparsity
     assert d["union_sparsity_k2"][0] <= d["per_token_sparsity"][0] + 1e-12
+    # oracle masking must realize the target sparsity exactly, per site
+    rng = np.random.default_rng(0)
+    dims2 = [100, 40]
+    offs2 = np.array([0, 100], np.int64)
+    a2 = Acc(2, offs2, np.zeros(140, np.float32), oracle=0.5, dims=dims2)
+    fa = np.abs(rng.standard_normal(140).astype(np.float32))
+    m = a2._mask(fa)
+    assert m[:100].sum() == 50 and m[100:].sum() == 20, (m[:100].sum(), m[100:].sum())
+    a3 = Acc(2, offs2, np.zeros(140, np.float32), oracle=0.4, dims=dims2)
+    m3 = a3._mask(fa)
+    assert m3[:100].sum() == 60 and m3[100:].sum() == 24
+    # and the fixed-threshold path must be unaffected
+    a4 = Acc(2, offs2, np.full(140, 0.5, np.float32))
+    assert np.array_equal(a4._mask(fa), fa >= 0.5)
     print("dump_masks selftest OK")
 
 
@@ -503,6 +561,8 @@ if __name__ == "__main__":
     m.add_argument("--out", default="analysis/summary/phase0.json")
     m.add_argument("--max-target", type=int, default=0)
     m.add_argument("--limit-traces", type=int, default=0)
+    m.add_argument("--oracle", action="store_true",
+                   help="per-token exact quantile instead of fixed thresholds")
     m.set_defaults(fn=cmd_measure)
 
     s = sub.add_parser("selftest")
