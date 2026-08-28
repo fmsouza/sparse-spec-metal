@@ -37,20 +37,23 @@ plan.
 
 ---
 
-## Phase 0 — Mask-overlap measurement (gate: H1)  ·  est. 6–9 h
+## Phase 0 — Mask-overlap measurement (gate: H1)  ·  ☑ DONE — **GATE FAILED**
 
-Falsifies the whole project cheaply. No kernels.
+**H1 falsified; kill criterion met.** Union sparsity at k=4 / per-token 40% is 5.1%
+against a <20% kill floor. See [`analysis/report.md`](analysis/report.md) and
+[`results/phase0-mask-overlap.md`](results/phase0-mask-overlap.md). Phases 1–3 below
+do not start. Actual cost: ~4 h wall clock.
 
 | # | Task | Artifact | Est. |
 |---|---|---|---|
-| 0.1 | uv env; pull `mlx-community/Qwen3.8-27B-4bit` (16 GB) | `pyproject.toml`, `uv.lock` | 0.5 h ☑ |
-| 0.2 | Assemble ~20 agentic-coding traces from local Claude Code session logs (multi-file TS/Rust/Python edits, diffs, tool output); WikiText-2 control slice | `analysis/traces/` (gitignored), `analysis/build_traces.py` | 1.0 h |
-| 0.3 | Instrumented decode-mode forward pass: tap every `nn.Linear`/`nn.QuantizedLinear` input, streaming mask statistics | `analysis/dump_masks.py` | 2.0 h |
-| 0.4 | Calibration pass → per-site fixed thresholds at per-token targets {25,40,50}% | `analysis/thresholds/*.json` | 0.5 h |
-| 0.5 | Measurement pass over all traces + control | `results/raw/*.json` (gitignored), `analysis/summary/*.json` (committed) | 1.5 h |
-| 0.6 | Aggregation + tables: per-class per-token sparsity, union sparsity k∈{2,3,4}, adjacent Jaccard, byte-weighted model-wide | `analysis/overlap.py` | 1.5 h |
-| 0.7 | `--check` self-test exits 0; tables regenerate deterministically from committed summary stats | `analysis/overlap.py --check` | 0.5 h |
-| 0.8 | Write-up + explicit H1 verdict | `analysis/report.md`, `results/phase0-*.md` | 1.0 h |
+| 0.1 ☑ | uv env; pull `mlx-community/Qwen3.8-27B-4bit` (16 GB) | `pyproject.toml`, `uv.lock` | 0.5 h ☑ |
+| 0.2 ☑ | Assemble ~20 agentic-coding traces from local Claude Code session logs (multi-file TS/Rust/Python edits, diffs, tool output); WikiText-2 control slice | `analysis/traces/` (gitignored), `analysis/build_traces.py` | 1.0 h |
+| 0.3 ☑ | Instrumented decode-mode forward pass: tap every `nn.Linear`/`nn.QuantizedLinear` input, streaming mask statistics | `analysis/dump_masks.py` | 2.0 h |
+| 0.4 ☑ | Calibration pass → per-site fixed thresholds at per-token targets {25,40,50}% | `analysis/thresholds/*.json` | 0.5 h |
+| 0.5 ☑ | Measurement pass over all traces + control | `results/raw/*.json` (gitignored), `analysis/summary/*.json` (committed) | 1.5 h |
+| 0.6 ☑ | Aggregation + tables: per-class per-token sparsity, union sparsity k∈{2,3,4}, adjacent Jaccard, byte-weighted model-wide | `analysis/overlap.py` | 1.5 h |
+| 0.7 ☑ | `--check` self-test exits 0; tables regenerate deterministically from committed summary stats | `analysis/overlap.py --check` | 0.5 h |
+| 0.8 ☑ | Write-up + explicit H1 verdict | `analysis/report.md`, `results/phase0-*.md` | 1.0 h |
 
 ### Method (decisions, stated up front)
 
@@ -91,19 +94,25 @@ off-distribution relative to teacher forcing. Teacher-forced adjacent tokens are
 good proxy only when acceptance is high. Phase 3 re-measures union sparsity on the
 real draft stream; Phase 0 reports the teacher-forced bound and flags the gap.
 
-### Gate
+### Gate — RESULT
 
-- **H1 holds:** union sparsity ≥ 30% at k=4 / per-token 50% (≥ 20% at per-token 40%)
-  → record evidence, proceed to Phase 1 autonomously.
-- **Kill:** union sparsity < 20% at k=4 / per-token 40% → **C1 dead**, write up the
-  negative result, archive, stop.
-- **Within noise / ambiguous:** stop and ask for review.
+| | threshold | measured | |
+|---|---|---|---|
+| H1, k=4, per-token 50% | ≥30% | **10.8%** | fail (−95.8 SEM) |
+| H1, k=4, per-token 40% | ≥20% | **5.1%** | fail (−154.6 SEM) |
+| Kill, k=4, per-token 40% | <20% → C1 dead | **5.1%** | **met** |
+
+Robustness: an exact per-token oracle quantile (not kernel-implementable) gives
+9.7% at k=4 / 50% — slightly *worse*, so the calibration shortcut is not the cause.
+Measured union sparsity is only 1.59× what independent masks would give.
+
+**Next action: negative result written up; awaiting review before archiving.**
 
 ---
 
-## Phase 1 — Calibration + quality (gate: H2)  ·  est. 12–18 h
+## Phase 1 — Calibration + quality (gate: H2)  ·  ✗ NOT STARTED
 
-Only starts if Phase 0 gate passes.
+Blocked: the Phase 0 gate failed. Kept for the record.
 
 | # | Task | Artifact | Est. |
 |---|---|---|---|
@@ -121,7 +130,7 @@ the model-wide budget, re-check the e2e arithmetic before Phase 2.
 
 ---
 
-## Phase 2 — Kernel micro-benchmarks (gate: ≥1.3×)  ·  est. 30–50 h
+## Phase 2 — Kernel micro-benchmarks (gate: ≥1.3×)  ·  ✗ NOT STARTED
 
 Kernels are **reimplemented from the SpQt paper design** — assume no public code.
 
@@ -140,7 +149,7 @@ tuning → integration not worth it; publish kernels + negative result.
 
 ---
 
-## Phase 3 — End-to-end integration (gate: H3)  ·  est. 30–50 h
+## Phase 3 — End-to-end integration (gate: H3)  ·  ✗ NOT STARTED
 
 | # | Task | Artifact | Est. |
 |---|---|---|---|
@@ -173,7 +182,8 @@ tuning → integration not worth it; publish kernels + negative result.
 |---|---|---|
 | `mlx-community/Qwen3.8-27B-4bit` | 16.1 GB | 16.1 GB |
 | WikiText-2-raw | ~0.02 GB | 16.1 GB |
-| (Phase 3) bartowski Q4_K_M GGUF + MTP | ~17 GB | ~33 GB |
-| (Phase 1) EvalPlus + code corpus | ~0.5 GB | ~34 GB |
+| WikiText-2-raw (`datasets`) | 0.02 GB | 16.1 GB |
+| ~~(Phase 3) bartowski GGUF + MTP~~ | ~~~17 GB~~ | not pulled — phase blocked |
+| ~~(Phase 1) EvalPlus + code corpus~~ | ~~~0.5 GB~~ | not pulled — phase blocked |
 
-Within the ~40 GB budget. Anything beyond → ask first.
+**Actually downloaded: 16.1 GB**, well inside the ~40 GB budget.
