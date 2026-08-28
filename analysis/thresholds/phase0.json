@@ -1,0 +1,3622 @@
+{
+ "kind": "phase0-thresholds",
+ "model": "mlx-community/Qwen3.8-27B-4bit",
+ "method": "fixed per-site empirical quantile of |x| over the held-out calibration split; 4096-bin log2 histogram, log-linear in-bin interpolation",
+ "targets": [
+  0.25,
+  0.4,
+  0.5
+ ],
+ "calib_traces": [
+  "calib-00",
+  "calib-01",
+  "calib-02",
+  "calib-03",
+  "calib-04",
+  "calib-05",
+  "calib-wiki-00",
+  "calib-wiki-01"
+ ],
+ "calib_tokens": 4646,
+ "env": {
+  "macos": "26.6.2 (25G83)",
+  "chip": "Apple M3 Max",
+  "ram_bytes": 38654705664,
+  "iogpu_wired_limit_mb": "0",
+  "power": "AC",
+  "powermode_ac": "0",
+  "python": "3.13.1",
+  "mlx": "0.32.2",
+  "mlx_lm": "0.31.3",
+  "numpy": "2.5.2"
+ },
+ "sites": [
+  {
+   "idx": 0,
+   "layer": 0,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L00.deltanet-in"
+  },
+  {
+   "idx": 1,
+   "layer": 0,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L00.deltanet-out"
+  },
+  {
+   "idx": 2,
+   "layer": 0,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L00.ffn-up-gate"
+  },
+  {
+   "idx": 3,
+   "layer": 0,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L00.ffn-down"
+  },
+  {
+   "idx": 4,
+   "layer": 1,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L01.deltanet-in"
+  },
+  {
+   "idx": 5,
+   "layer": 1,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L01.deltanet-out"
+  },
+  {
+   "idx": 6,
+   "layer": 1,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L01.ffn-up-gate"
+  },
+  {
+   "idx": 7,
+   "layer": 1,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L01.ffn-down"
+  },
+  {
+   "idx": 8,
+   "layer": 2,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L02.deltanet-in"
+  },
+  {
+   "idx": 9,
+   "layer": 2,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L02.deltanet-out"
+  },
+  {
+   "idx": 10,
+   "layer": 2,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L02.ffn-up-gate"
+  },
+  {
+   "idx": 11,
+   "layer": 2,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L02.ffn-down"
+  },
+  {
+   "idx": 12,
+   "layer": 3,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L03.attn-qkv"
+  },
+  {
+   "idx": 13,
+   "layer": 3,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L03.attn-o"
+  },
+  {
+   "idx": 14,
+   "layer": 3,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L03.ffn-up-gate"
+  },
+  {
+   "idx": 15,
+   "layer": 3,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L03.ffn-down"
+  },
+  {
+   "idx": 16,
+   "layer": 4,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L04.deltanet-in"
+  },
+  {
+   "idx": 17,
+   "layer": 4,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L04.deltanet-out"
+  },
+  {
+   "idx": 18,
+   "layer": 4,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L04.ffn-up-gate"
+  },
+  {
+   "idx": 19,
+   "layer": 4,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L04.ffn-down"
+  },
+  {
+   "idx": 20,
+   "layer": 5,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L05.deltanet-in"
+  },
+  {
+   "idx": 21,
+   "layer": 5,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L05.deltanet-out"
+  },
+  {
+   "idx": 22,
+   "layer": 5,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L05.ffn-up-gate"
+  },
+  {
+   "idx": 23,
+   "layer": 5,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L05.ffn-down"
+  },
+  {
+   "idx": 24,
+   "layer": 6,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L06.deltanet-in"
+  },
+  {
+   "idx": 25,
+   "layer": 6,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L06.deltanet-out"
+  },
+  {
+   "idx": 26,
+   "layer": 6,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L06.ffn-up-gate"
+  },
+  {
+   "idx": 27,
+   "layer": 6,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L06.ffn-down"
+  },
+  {
+   "idx": 28,
+   "layer": 7,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L07.attn-qkv"
+  },
+  {
+   "idx": 29,
+   "layer": 7,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L07.attn-o"
+  },
+  {
+   "idx": 30,
+   "layer": 7,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L07.ffn-up-gate"
+  },
+  {
+   "idx": 31,
+   "layer": 7,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L07.ffn-down"
+  },
+  {
+   "idx": 32,
+   "layer": 8,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L08.deltanet-in"
+  },
+  {
+   "idx": 33,
+   "layer": 8,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L08.deltanet-out"
+  },
+  {
+   "idx": 34,
+   "layer": 8,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L08.ffn-up-gate"
+  },
+  {
+   "idx": 35,
+   "layer": 8,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L08.ffn-down"
+  },
+  {
+   "idx": 36,
+   "layer": 9,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L09.deltanet-in"
+  },
+  {
+   "idx": 37,
+   "layer": 9,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L09.deltanet-out"
+  },
+  {
+   "idx": 38,
+   "layer": 9,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L09.ffn-up-gate"
+  },
+  {
+   "idx": 39,
+   "layer": 9,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L09.ffn-down"
+  },
+  {
+   "idx": 40,
+   "layer": 10,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L10.deltanet-in"
+  },
+  {
+   "idx": 41,
+   "layer": 10,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L10.deltanet-out"
+  },
+  {
+   "idx": 42,
+   "layer": 10,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L10.ffn-up-gate"
+  },
+  {
+   "idx": 43,
+   "layer": 10,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L10.ffn-down"
+  },
+  {
+   "idx": 44,
+   "layer": 11,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L11.attn-qkv"
+  },
+  {
+   "idx": 45,
+   "layer": 11,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L11.attn-o"
+  },
+  {
+   "idx": 46,
+   "layer": 11,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L11.ffn-up-gate"
+  },
+  {
+   "idx": 47,
+   "layer": 11,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L11.ffn-down"
+  },
+  {
+   "idx": 48,
+   "layer": 12,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L12.deltanet-in"
+  },
+  {
+   "idx": 49,
+   "layer": 12,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L12.deltanet-out"
+  },
+  {
+   "idx": 50,
+   "layer": 12,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L12.ffn-up-gate"
+  },
+  {
+   "idx": 51,
+   "layer": 12,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L12.ffn-down"
+  },
+  {
+   "idx": 52,
+   "layer": 13,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L13.deltanet-in"
+  },
+  {
+   "idx": 53,
+   "layer": 13,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L13.deltanet-out"
+  },
+  {
+   "idx": 54,
+   "layer": 13,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L13.ffn-up-gate"
+  },
+  {
+   "idx": 55,
+   "layer": 13,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L13.ffn-down"
+  },
+  {
+   "idx": 56,
+   "layer": 14,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L14.deltanet-in"
+  },
+  {
+   "idx": 57,
+   "layer": 14,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L14.deltanet-out"
+  },
+  {
+   "idx": 58,
+   "layer": 14,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L14.ffn-up-gate"
+  },
+  {
+   "idx": 59,
+   "layer": 14,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L14.ffn-down"
+  },
+  {
+   "idx": 60,
+   "layer": 15,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L15.attn-qkv"
+  },
+  {
+   "idx": 61,
+   "layer": 15,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L15.attn-o"
+  },
+  {
+   "idx": 62,
+   "layer": 15,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L15.ffn-up-gate"
+  },
+  {
+   "idx": 63,
+   "layer": 15,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L15.ffn-down"
+  },
+  {
+   "idx": 64,
+   "layer": 16,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L16.deltanet-in"
+  },
+  {
+   "idx": 65,
+   "layer": 16,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L16.deltanet-out"
+  },
+  {
+   "idx": 66,
+   "layer": 16,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L16.ffn-up-gate"
+  },
+  {
+   "idx": 67,
+   "layer": 16,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L16.ffn-down"
+  },
+  {
+   "idx": 68,
+   "layer": 17,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L17.deltanet-in"
+  },
+  {
+   "idx": 69,
+   "layer": 17,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L17.deltanet-out"
+  },
+  {
+   "idx": 70,
+   "layer": 17,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L17.ffn-up-gate"
+  },
+  {
+   "idx": 71,
+   "layer": 17,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L17.ffn-down"
+  },
+  {
+   "idx": 72,
+   "layer": 18,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L18.deltanet-in"
+  },
+  {
+   "idx": 73,
+   "layer": 18,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L18.deltanet-out"
+  },
+  {
+   "idx": 74,
+   "layer": 18,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L18.ffn-up-gate"
+  },
+  {
+   "idx": 75,
+   "layer": 18,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L18.ffn-down"
+  },
+  {
+   "idx": 76,
+   "layer": 19,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L19.attn-qkv"
+  },
+  {
+   "idx": 77,
+   "layer": 19,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L19.attn-o"
+  },
+  {
+   "idx": 78,
+   "layer": 19,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L19.ffn-up-gate"
+  },
+  {
+   "idx": 79,
+   "layer": 19,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L19.ffn-down"
+  },
+  {
+   "idx": 80,
+   "layer": 20,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L20.deltanet-in"
+  },
+  {
+   "idx": 81,
+   "layer": 20,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L20.deltanet-out"
+  },
+  {
+   "idx": 82,
+   "layer": 20,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L20.ffn-up-gate"
+  },
+  {
+   "idx": 83,
+   "layer": 20,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L20.ffn-down"
+  },
+  {
+   "idx": 84,
+   "layer": 21,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L21.deltanet-in"
+  },
+  {
+   "idx": 85,
+   "layer": 21,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L21.deltanet-out"
+  },
+  {
+   "idx": 86,
+   "layer": 21,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L21.ffn-up-gate"
+  },
+  {
+   "idx": 87,
+   "layer": 21,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L21.ffn-down"
+  },
+  {
+   "idx": 88,
+   "layer": 22,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L22.deltanet-in"
+  },
+  {
+   "idx": 89,
+   "layer": 22,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L22.deltanet-out"
+  },
+  {
+   "idx": 90,
+   "layer": 22,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L22.ffn-up-gate"
+  },
+  {
+   "idx": 91,
+   "layer": 22,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L22.ffn-down"
+  },
+  {
+   "idx": 92,
+   "layer": 23,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L23.attn-qkv"
+  },
+  {
+   "idx": 93,
+   "layer": 23,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L23.attn-o"
+  },
+  {
+   "idx": 94,
+   "layer": 23,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L23.ffn-up-gate"
+  },
+  {
+   "idx": 95,
+   "layer": 23,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L23.ffn-down"
+  },
+  {
+   "idx": 96,
+   "layer": 24,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L24.deltanet-in"
+  },
+  {
+   "idx": 97,
+   "layer": 24,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L24.deltanet-out"
+  },
+  {
+   "idx": 98,
+   "layer": 24,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L24.ffn-up-gate"
+  },
+  {
+   "idx": 99,
+   "layer": 24,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L24.ffn-down"
+  },
+  {
+   "idx": 100,
+   "layer": 25,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L25.deltanet-in"
+  },
+  {
+   "idx": 101,
+   "layer": 25,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L25.deltanet-out"
+  },
+  {
+   "idx": 102,
+   "layer": 25,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L25.ffn-up-gate"
+  },
+  {
+   "idx": 103,
+   "layer": 25,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L25.ffn-down"
+  },
+  {
+   "idx": 104,
+   "layer": 26,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L26.deltanet-in"
+  },
+  {
+   "idx": 105,
+   "layer": 26,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L26.deltanet-out"
+  },
+  {
+   "idx": 106,
+   "layer": 26,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L26.ffn-up-gate"
+  },
+  {
+   "idx": 107,
+   "layer": 26,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L26.ffn-down"
+  },
+  {
+   "idx": 108,
+   "layer": 27,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L27.attn-qkv"
+  },
+  {
+   "idx": 109,
+   "layer": 27,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L27.attn-o"
+  },
+  {
+   "idx": 110,
+   "layer": 27,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L27.ffn-up-gate"
+  },
+  {
+   "idx": 111,
+   "layer": 27,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L27.ffn-down"
+  },
+  {
+   "idx": 112,
+   "layer": 28,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L28.deltanet-in"
+  },
+  {
+   "idx": 113,
+   "layer": 28,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L28.deltanet-out"
+  },
+  {
+   "idx": 114,
+   "layer": 28,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L28.ffn-up-gate"
+  },
+  {
+   "idx": 115,
+   "layer": 28,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L28.ffn-down"
+  },
+  {
+   "idx": 116,
+   "layer": 29,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L29.deltanet-in"
+  },
+  {
+   "idx": 117,
+   "layer": 29,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L29.deltanet-out"
+  },
+  {
+   "idx": 118,
+   "layer": 29,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L29.ffn-up-gate"
+  },
+  {
+   "idx": 119,
+   "layer": 29,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L29.ffn-down"
+  },
+  {
+   "idx": 120,
+   "layer": 30,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L30.deltanet-in"
+  },
+  {
+   "idx": 121,
+   "layer": 30,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L30.deltanet-out"
+  },
+  {
+   "idx": 122,
+   "layer": 30,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L30.ffn-up-gate"
+  },
+  {
+   "idx": 123,
+   "layer": 30,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L30.ffn-down"
+  },
+  {
+   "idx": 124,
+   "layer": 31,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L31.attn-qkv"
+  },
+  {
+   "idx": 125,
+   "layer": 31,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L31.attn-o"
+  },
+  {
+   "idx": 126,
+   "layer": 31,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L31.ffn-up-gate"
+  },
+  {
+   "idx": 127,
+   "layer": 31,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L31.ffn-down"
+  },
+  {
+   "idx": 128,
+   "layer": 32,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L32.deltanet-in"
+  },
+  {
+   "idx": 129,
+   "layer": 32,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L32.deltanet-out"
+  },
+  {
+   "idx": 130,
+   "layer": 32,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L32.ffn-up-gate"
+  },
+  {
+   "idx": 131,
+   "layer": 32,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L32.ffn-down"
+  },
+  {
+   "idx": 132,
+   "layer": 33,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L33.deltanet-in"
+  },
+  {
+   "idx": 133,
+   "layer": 33,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L33.deltanet-out"
+  },
+  {
+   "idx": 134,
+   "layer": 33,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L33.ffn-up-gate"
+  },
+  {
+   "idx": 135,
+   "layer": 33,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L33.ffn-down"
+  },
+  {
+   "idx": 136,
+   "layer": 34,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L34.deltanet-in"
+  },
+  {
+   "idx": 137,
+   "layer": 34,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L34.deltanet-out"
+  },
+  {
+   "idx": 138,
+   "layer": 34,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L34.ffn-up-gate"
+  },
+  {
+   "idx": 139,
+   "layer": 34,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L34.ffn-down"
+  },
+  {
+   "idx": 140,
+   "layer": 35,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L35.attn-qkv"
+  },
+  {
+   "idx": 141,
+   "layer": 35,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L35.attn-o"
+  },
+  {
+   "idx": 142,
+   "layer": 35,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L35.ffn-up-gate"
+  },
+  {
+   "idx": 143,
+   "layer": 35,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L35.ffn-down"
+  },
+  {
+   "idx": 144,
+   "layer": 36,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L36.deltanet-in"
+  },
+  {
+   "idx": 145,
+   "layer": 36,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L36.deltanet-out"
+  },
+  {
+   "idx": 146,
+   "layer": 36,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L36.ffn-up-gate"
+  },
+  {
+   "idx": 147,
+   "layer": 36,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L36.ffn-down"
+  },
+  {
+   "idx": 148,
+   "layer": 37,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L37.deltanet-in"
+  },
+  {
+   "idx": 149,
+   "layer": 37,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L37.deltanet-out"
+  },
+  {
+   "idx": 150,
+   "layer": 37,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L37.ffn-up-gate"
+  },
+  {
+   "idx": 151,
+   "layer": 37,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L37.ffn-down"
+  },
+  {
+   "idx": 152,
+   "layer": 38,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L38.deltanet-in"
+  },
+  {
+   "idx": 153,
+   "layer": 38,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L38.deltanet-out"
+  },
+  {
+   "idx": 154,
+   "layer": 38,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L38.ffn-up-gate"
+  },
+  {
+   "idx": 155,
+   "layer": 38,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L38.ffn-down"
+  },
+  {
+   "idx": 156,
+   "layer": 39,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L39.attn-qkv"
+  },
+  {
+   "idx": 157,
+   "layer": 39,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L39.attn-o"
+  },
+  {
+   "idx": 158,
+   "layer": 39,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L39.ffn-up-gate"
+  },
+  {
+   "idx": 159,
+   "layer": 39,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L39.ffn-down"
+  },
+  {
+   "idx": 160,
+   "layer": 40,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L40.deltanet-in"
+  },
+  {
+   "idx": 161,
+   "layer": 40,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L40.deltanet-out"
+  },
+  {
+   "idx": 162,
+   "layer": 40,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L40.ffn-up-gate"
+  },
+  {
+   "idx": 163,
+   "layer": 40,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L40.ffn-down"
+  },
+  {
+   "idx": 164,
+   "layer": 41,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L41.deltanet-in"
+  },
+  {
+   "idx": 165,
+   "layer": 41,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L41.deltanet-out"
+  },
+  {
+   "idx": 166,
+   "layer": 41,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L41.ffn-up-gate"
+  },
+  {
+   "idx": 167,
+   "layer": 41,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L41.ffn-down"
+  },
+  {
+   "idx": 168,
+   "layer": 42,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L42.deltanet-in"
+  },
+  {
+   "idx": 169,
+   "layer": 42,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L42.deltanet-out"
+  },
+  {
+   "idx": 170,
+   "layer": 42,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L42.ffn-up-gate"
+  },
+  {
+   "idx": 171,
+   "layer": 42,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L42.ffn-down"
+  },
+  {
+   "idx": 172,
+   "layer": 43,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L43.attn-qkv"
+  },
+  {
+   "idx": 173,
+   "layer": 43,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L43.attn-o"
+  },
+  {
+   "idx": 174,
+   "layer": 43,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L43.ffn-up-gate"
+  },
+  {
+   "idx": 175,
+   "layer": 43,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L43.ffn-down"
+  },
+  {
+   "idx": 176,
+   "layer": 44,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L44.deltanet-in"
+  },
+  {
+   "idx": 177,
+   "layer": 44,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L44.deltanet-out"
+  },
+  {
+   "idx": 178,
+   "layer": 44,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L44.ffn-up-gate"
+  },
+  {
+   "idx": 179,
+   "layer": 44,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L44.ffn-down"
+  },
+  {
+   "idx": 180,
+   "layer": 45,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L45.deltanet-in"
+  },
+  {
+   "idx": 181,
+   "layer": 45,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L45.deltanet-out"
+  },
+  {
+   "idx": 182,
+   "layer": 45,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L45.ffn-up-gate"
+  },
+  {
+   "idx": 183,
+   "layer": 45,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L45.ffn-down"
+  },
+  {
+   "idx": 184,
+   "layer": 46,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L46.deltanet-in"
+  },
+  {
+   "idx": 185,
+   "layer": 46,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L46.deltanet-out"
+  },
+  {
+   "idx": 186,
+   "layer": 46,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L46.ffn-up-gate"
+  },
+  {
+   "idx": 187,
+   "layer": 46,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L46.ffn-down"
+  },
+  {
+   "idx": 188,
+   "layer": 47,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L47.attn-qkv"
+  },
+  {
+   "idx": 189,
+   "layer": 47,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L47.attn-o"
+  },
+  {
+   "idx": 190,
+   "layer": 47,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L47.ffn-up-gate"
+  },
+  {
+   "idx": 191,
+   "layer": 47,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L47.ffn-down"
+  },
+  {
+   "idx": 192,
+   "layer": 48,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L48.deltanet-in"
+  },
+  {
+   "idx": 193,
+   "layer": 48,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L48.deltanet-out"
+  },
+  {
+   "idx": 194,
+   "layer": 48,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L48.ffn-up-gate"
+  },
+  {
+   "idx": 195,
+   "layer": 48,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L48.ffn-down"
+  },
+  {
+   "idx": 196,
+   "layer": 49,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L49.deltanet-in"
+  },
+  {
+   "idx": 197,
+   "layer": 49,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L49.deltanet-out"
+  },
+  {
+   "idx": 198,
+   "layer": 49,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L49.ffn-up-gate"
+  },
+  {
+   "idx": 199,
+   "layer": 49,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L49.ffn-down"
+  },
+  {
+   "idx": 200,
+   "layer": 50,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L50.deltanet-in"
+  },
+  {
+   "idx": 201,
+   "layer": 50,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L50.deltanet-out"
+  },
+  {
+   "idx": 202,
+   "layer": 50,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L50.ffn-up-gate"
+  },
+  {
+   "idx": 203,
+   "layer": 50,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L50.ffn-down"
+  },
+  {
+   "idx": 204,
+   "layer": 51,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L51.attn-qkv"
+  },
+  {
+   "idx": 205,
+   "layer": 51,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L51.attn-o"
+  },
+  {
+   "idx": 206,
+   "layer": 51,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L51.ffn-up-gate"
+  },
+  {
+   "idx": 207,
+   "layer": 51,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L51.ffn-down"
+  },
+  {
+   "idx": 208,
+   "layer": 52,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L52.deltanet-in"
+  },
+  {
+   "idx": 209,
+   "layer": 52,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L52.deltanet-out"
+  },
+  {
+   "idx": 210,
+   "layer": 52,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L52.ffn-up-gate"
+  },
+  {
+   "idx": 211,
+   "layer": 52,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L52.ffn-down"
+  },
+  {
+   "idx": 212,
+   "layer": 53,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L53.deltanet-in"
+  },
+  {
+   "idx": 213,
+   "layer": 53,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L53.deltanet-out"
+  },
+  {
+   "idx": 214,
+   "layer": 53,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L53.ffn-up-gate"
+  },
+  {
+   "idx": 215,
+   "layer": 53,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L53.ffn-down"
+  },
+  {
+   "idx": 216,
+   "layer": 54,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L54.deltanet-in"
+  },
+  {
+   "idx": 217,
+   "layer": 54,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L54.deltanet-out"
+  },
+  {
+   "idx": 218,
+   "layer": 54,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L54.ffn-up-gate"
+  },
+  {
+   "idx": 219,
+   "layer": 54,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L54.ffn-down"
+  },
+  {
+   "idx": 220,
+   "layer": 55,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L55.attn-qkv"
+  },
+  {
+   "idx": 221,
+   "layer": 55,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L55.attn-o"
+  },
+  {
+   "idx": 222,
+   "layer": 55,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L55.ffn-up-gate"
+  },
+  {
+   "idx": 223,
+   "layer": 55,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L55.ffn-down"
+  },
+  {
+   "idx": 224,
+   "layer": 56,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L56.deltanet-in"
+  },
+  {
+   "idx": 225,
+   "layer": 56,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L56.deltanet-out"
+  },
+  {
+   "idx": 226,
+   "layer": 56,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L56.ffn-up-gate"
+  },
+  {
+   "idx": 227,
+   "layer": 56,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L56.ffn-down"
+  },
+  {
+   "idx": 228,
+   "layer": 57,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L57.deltanet-in"
+  },
+  {
+   "idx": 229,
+   "layer": 57,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L57.deltanet-out"
+  },
+  {
+   "idx": 230,
+   "layer": 57,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L57.ffn-up-gate"
+  },
+  {
+   "idx": 231,
+   "layer": 57,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L57.ffn-down"
+  },
+  {
+   "idx": 232,
+   "layer": 58,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L58.deltanet-in"
+  },
+  {
+   "idx": 233,
+   "layer": 58,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L58.deltanet-out"
+  },
+  {
+   "idx": 234,
+   "layer": 58,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L58.ffn-up-gate"
+  },
+  {
+   "idx": 235,
+   "layer": 58,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L58.ffn-down"
+  },
+  {
+   "idx": 236,
+   "layer": 59,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L59.attn-qkv"
+  },
+  {
+   "idx": 237,
+   "layer": 59,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L59.attn-o"
+  },
+  {
+   "idx": 238,
+   "layer": 59,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L59.ffn-up-gate"
+  },
+  {
+   "idx": 239,
+   "layer": 59,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L59.ffn-down"
+  },
+  {
+   "idx": 240,
+   "layer": 60,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L60.deltanet-in"
+  },
+  {
+   "idx": 241,
+   "layer": 60,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L60.deltanet-out"
+  },
+  {
+   "idx": 242,
+   "layer": 60,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L60.ffn-up-gate"
+  },
+  {
+   "idx": 243,
+   "layer": 60,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L60.ffn-down"
+  },
+  {
+   "idx": 244,
+   "layer": 61,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L61.deltanet-in"
+  },
+  {
+   "idx": 245,
+   "layer": 61,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L61.deltanet-out"
+  },
+  {
+   "idx": 246,
+   "layer": 61,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L61.ffn-up-gate"
+  },
+  {
+   "idx": 247,
+   "layer": 61,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L61.ffn-down"
+  },
+  {
+   "idx": 248,
+   "layer": 62,
+   "cls": "deltanet-in",
+   "coarse": "deltanet-proj",
+   "dim": 5120,
+   "out_sum": 16480,
+   "key": "L62.deltanet-in"
+  },
+  {
+   "idx": 249,
+   "layer": 62,
+   "cls": "deltanet-out",
+   "coarse": "deltanet-proj",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L62.deltanet-out"
+  },
+  {
+   "idx": 250,
+   "layer": 62,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L62.ffn-up-gate"
+  },
+  {
+   "idx": 251,
+   "layer": 62,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L62.ffn-down"
+  },
+  {
+   "idx": 252,
+   "layer": 63,
+   "cls": "attn-qkv",
+   "coarse": "attn-QKVO",
+   "dim": 5120,
+   "out_sum": 14336,
+   "key": "L63.attn-qkv"
+  },
+  {
+   "idx": 253,
+   "layer": 63,
+   "cls": "attn-o",
+   "coarse": "attn-QKVO",
+   "dim": 6144,
+   "out_sum": 5120,
+   "key": "L63.attn-o"
+  },
+  {
+   "idx": 254,
+   "layer": 63,
+   "cls": "ffn-up-gate",
+   "coarse": "ffn-up-gate",
+   "dim": 5120,
+   "out_sum": 34816,
+   "key": "L63.ffn-up-gate"
+  },
+  {
+   "idx": 255,
+   "layer": 63,
+   "cls": "ffn-down",
+   "coarse": "ffn-down",
+   "dim": 17408,
+   "out_sum": 5120,
+   "key": "L63.ffn-down"
+  }
+ ],
+ "total_mask_bits": 2162688,
+ "thresholds": {
+  "L00.deltanet-in": {
+   "0.25": 0.16432603798584622,
+   "0.40": 0.3141575074317707,
+   "0.50": 0.4249421036763502
+  },
+  "L00.deltanet-out": {
+   "0.25": 0.0005473674742450707,
+   "0.40": 0.0010820366689845084,
+   "0.50": 0.0015946951317281025
+  },
+  "L00.ffn-up-gate": {
+   "0.25": 0.022536004553780856,
+   "0.40": 0.03766153243736073,
+   "0.50": 0.04900029184682733
+  },
+  "L00.ffn-down": {
+   "0.25": 0.0003310080068294904,
+   "0.40": 0.0007030783457622967,
+   "0.50": 0.0010598855488770207
+  },
+  "L01.deltanet-in": {
+   "0.25": 0.032091401398894305,
+   "0.40": 0.05385029742273507,
+   "0.50": 0.07035484483209803
+  },
+  "L01.deltanet-out": {
+   "0.25": 0.00030468310253415183,
+   "0.40": 0.0007231038070727651,
+   "0.50": 0.0011733787237502482
+  },
+  "L01.ffn-up-gate": {
+   "0.25": 0.028498078331556168,
+   "0.40": 0.047408632986941694,
+   "0.50": 0.061506006721099835
+  },
+  "L01.ffn-down": {
+   "0.25": 0.0004850039684852899,
+   "0.40": 0.0010269103725285026,
+   "0.50": 0.0015424770460568647
+  },
+  "L02.deltanet-in": {
+   "0.25": 0.039242799946873685,
+   "0.40": 0.06564097485783207,
+   "0.50": 0.08538640310842045
+  },
+  "L02.deltanet-out": {
+   "0.25": 0.00032335441001724865,
+   "0.40": 0.000784221468020357,
+   "0.50": 0.001286596490373904
+  },
+  "L02.ffn-up-gate": {
+   "0.25": 0.036662401402593484,
+   "0.40": 0.06107979772058728,
+   "0.50": 0.07949071022894888
+  },
+  "L02.ffn-down": {
+   "0.25": 0.0006437966861189418,
+   "0.40": 0.0013592469603786273,
+   "0.50": 0.0020254417950177806
+  },
+  "L03.attn-qkv": {
+   "0.25": 0.0683579183752141,
+   "0.40": 0.11458474450512578,
+   "0.50": 0.15017837235265277
+  },
+  "L03.attn-o": {
+   "0.25": 0.0009069715704103502,
+   "0.40": 0.0016446153774439074,
+   "0.50": 0.0022850190570737655
+  },
+  "L03.ffn-up-gate": {
+   "0.25": 0.03774365451025161,
+   "0.40": 0.0626611585178869,
+   "0.50": 0.08181386028090445
+  },
+  "L03.ffn-down": {
+   "0.25": 0.0007539935709855659,
+   "0.40": 0.0015852418312975588,
+   "0.50": 0.0023776257240291677
+  },
+  "L04.deltanet-in": {
+   "0.25": 0.04909265361476939,
+   "0.40": 0.08237385103212418,
+   "0.50": 0.10749175876696514
+  },
+  "L04.deltanet-out": {
+   "0.25": 0.0003378936091337215,
+   "0.40": 0.0008183239865263616,
+   "0.50": 0.0013546522297177835
+  },
+  "L04.ffn-up-gate": {
+   "0.25": 0.042232682396460816,
+   "0.40": 0.07006030284729686,
+   "0.50": 0.09136986842441978
+  },
+  "L04.ffn-down": {
+   "0.25": 0.0009283291608828096,
+   "0.40": 0.0019572860945583186,
+   "0.50": 0.002949519506177639
+  },
+  "L05.deltanet-in": {
+   "0.25": 0.05256842229748422,
+   "0.40": 0.0880436687186126,
+   "0.50": 0.11509509392858162
+  },
+  "L05.deltanet-out": {
+   "0.25": 0.0005444998919535959,
+   "0.40": 0.0012656409003940705,
+   "0.50": 0.0020265062429499414
+  },
+  "L05.ffn-up-gate": {
+   "0.25": 0.0465719791905926,
+   "0.40": 0.07777234591265435,
+   "0.50": 0.10111660338370942
+  },
+  "L05.ffn-down": {
+   "0.25": 0.0011137175554913241,
+   "0.40": 0.0023585336607341756,
+   "0.50": 0.003533797525849875
+  },
+  "L06.deltanet-in": {
+   "0.25": 0.05652945811800436,
+   "0.40": 0.09449455610716696,
+   "0.50": 0.12418431133269413
+  },
+  "L06.deltanet-out": {
+   "0.25": 0.0011109478229493527,
+   "0.40": 0.002394126257091664,
+   "0.50": 0.003631598016460839
+  },
+  "L06.ffn-up-gate": {
+   "0.25": 0.04994370590908736,
+   "0.40": 0.08339982867431792,
+   "0.50": 0.10837182216570017
+  },
+  "L06.ffn-down": {
+   "0.25": 0.0013105649868142906,
+   "0.40": 0.0027759801836128094,
+   "0.50": 0.004175793500613899
+  },
+  "L07.attn-qkv": {
+   "0.25": 0.06366456832996685,
+   "0.40": 0.10664764530280275,
+   "0.50": 0.1400955257379997
+  },
+  "L07.attn-o": {
+   "0.25": 0.0019060355688438435,
+   "0.40": 0.0034484476172337887,
+   "0.50": 0.004837659297223796
+  },
+  "L07.ffn-up-gate": {
+   "0.25": 0.053839112877668654,
+   "0.40": 0.08996476000530591,
+   "0.50": 0.1169647181502792
+  },
+  "L07.ffn-down": {
+   "0.25": 0.001461297410483635,
+   "0.40": 0.003091585359960019,
+   "0.50": 0.0046395463427942735
+  },
+  "L08.deltanet-in": {
+   "0.25": 0.0636294041724703,
+   "0.40": 0.10620196201473467,
+   "0.50": 0.13892700998009913
+  },
+  "L08.deltanet-out": {
+   "0.25": 0.0011275111334659847,
+   "0.40": 0.0025100818100073498,
+   "0.50": 0.003878498677671656
+  },
+  "L08.ffn-up-gate": {
+   "0.25": 0.05539119822867464,
+   "0.40": 0.092203136279833,
+   "0.50": 0.12015365418291579
+  },
+  "L08.ffn-down": {
+   "0.25": 0.0014845734296220936,
+   "0.40": 0.0031419548951390638,
+   "0.50": 0.004722482806787154
+  },
+  "L09.deltanet-in": {
+   "0.25": 0.06344265093600862,
+   "0.40": 0.10591447458834741,
+   "0.50": 0.1384472110883702
+  },
+  "L09.deltanet-out": {
+   "0.25": 0.0012746341947216379,
+   "0.40": 0.00278544482557848,
+   "0.50": 0.004281712718088169
+  },
+  "L09.ffn-up-gate": {
+   "0.25": 0.05748380590614142,
+   "0.40": 0.09579321627193416,
+   "0.50": 0.12477841749896876
+  },
+  "L09.ffn-down": {
+   "0.25": 0.0016569533181875415,
+   "0.40": 0.003500286098056137,
+   "0.50": 0.005238175096187334
+  },
+  "L10.deltanet-in": {
+   "0.25": 0.06428815090529003,
+   "0.40": 0.10766483252170984,
+   "0.50": 0.14037974050453958
+  },
+  "L10.deltanet-out": {
+   "0.25": 0.0014275500320243154,
+   "0.40": 0.0031487914658997434,
+   "0.50": 0.004882749145140501
+  },
+  "L10.ffn-up-gate": {
+   "0.25": 0.058547916997946044,
+   "0.40": 0.09751819119136057,
+   "0.50": 0.12686405285639468
+  },
+  "L10.ffn-down": {
+   "0.25": 0.0018633031056636455,
+   "0.40": 0.0039222227305911765,
+   "0.50": 0.005877249991546086
+  },
+  "L11.attn-qkv": {
+   "0.25": 0.06910190647532312,
+   "0.40": 0.11577152631133095,
+   "0.50": 0.15152763386732507
+  },
+  "L11.attn-o": {
+   "0.25": 0.0037402702153301074,
+   "0.40": 0.00688205439057852,
+   "0.50": 0.009624298417758956
+  },
+  "L11.ffn-up-gate": {
+   "0.25": 0.06071889195952346,
+   "0.40": 0.10079514023704979,
+   "0.50": 0.1308038524560466
+  },
+  "L11.ffn-down": {
+   "0.25": 0.0021378592305367843,
+   "0.40": 0.004490208764521374,
+   "0.50": 0.006677740475939314
+  },
+  "L12.deltanet-in": {
+   "0.25": 0.06722062084733202,
+   "0.40": 0.11257004891150972,
+   "0.50": 0.14708332814872777
+  },
+  "L12.deltanet-out": {
+   "0.25": 0.002228088060693571,
+   "0.40": 0.004772262024792103,
+   "0.50": 0.0072610879250489336
+  },
+  "L12.ffn-up-gate": {
+   "0.25": 0.061990800931588784,
+   "0.40": 0.10316966309022284,
+   "0.50": 0.1341975671265015
+  },
+  "L12.ffn-down": {
+   "0.25": 0.002364321514085569,
+   "0.40": 0.004944766154413709,
+   "0.50": 0.007344426499101871
+  },
+  "L13.deltanet-in": {
+   "0.25": 0.06986489430249056,
+   "0.40": 0.11709161743745693,
+   "0.50": 0.15231556720188355
+  },
+  "L13.deltanet-out": {
+   "0.25": 0.0021755146131223475,
+   "0.40": 0.004661440644893183,
+   "0.50": 0.00708241929001866
+  },
+  "L13.ffn-up-gate": {
+   "0.25": 0.06444051144125354,
+   "0.40": 0.10731064746515256,
+   "0.50": 0.13961577235469216
+  },
+  "L13.ffn-down": {
+   "0.25": 0.002540645340186828,
+   "0.40": 0.005293927047658853,
+   "0.50": 0.007890340833915302
+  },
+  "L14.deltanet-in": {
+   "0.25": 0.07236855617401068,
+   "0.40": 0.12082898478642067,
+   "0.50": 0.15705154969211269
+  },
+  "L14.deltanet-out": {
+   "0.25": 0.002387370992142961,
+   "0.40": 0.005230658734732572,
+   "0.50": 0.008051709455991707
+  },
+  "L14.ffn-up-gate": {
+   "0.25": 0.06668503943948538,
+   "0.40": 0.11118572036431526,
+   "0.50": 0.14479062102676496
+  },
+  "L14.ffn-down": {
+   "0.25": 0.002679917783257261,
+   "0.40": 0.005614104151785167,
+   "0.50": 0.008334907035052774
+  },
+  "L15.attn-qkv": {
+   "0.25": 0.0756737272542983,
+   "0.40": 0.12657261253691388,
+   "0.50": 0.1654325468494781
+  },
+  "L15.attn-o": {
+   "0.25": 0.004774111414666555,
+   "0.40": 0.009075651946463075,
+   "0.50": 0.012903188389824866
+  },
+  "L15.ffn-up-gate": {
+   "0.25": 0.07182666462030195,
+   "0.40": 0.11933150960306269,
+   "0.50": 0.15450366373207636
+  },
+  "L15.ffn-down": {
+   "0.25": 0.0032080669539373365,
+   "0.40": 0.006665127375949017,
+   "0.50": 0.009850534451075837
+  },
+  "L16.deltanet-in": {
+   "0.25": 0.07968601023334611,
+   "0.40": 0.132661916247651,
+   "0.50": 0.17240613005760844
+  },
+  "L16.deltanet-out": {
+   "0.25": 0.0029830157998621872,
+   "0.40": 0.006310487881401258,
+   "0.50": 0.009450884377294496
+  },
+  "L16.ffn-up-gate": {
+   "0.25": 0.07462983242675954,
+   "0.40": 0.12440837973371309,
+   "0.50": 0.16190725678170792
+  },
+  "L16.ffn-down": {
+   "0.25": 0.003674506301531721,
+   "0.40": 0.0076001270990281216,
+   "0.50": 0.011178657346667509
+  },
+  "L17.deltanet-in": {
+   "0.25": 0.08387892229037275,
+   "0.40": 0.13908638263509204,
+   "0.50": 0.18083541011928841
+  },
+  "L17.deltanet-out": {
+   "0.25": 0.003448171627062418,
+   "0.40": 0.007344476078755597,
+   "0.50": 0.011056619203627698
+  },
+  "L17.ffn-up-gate": {
+   "0.25": 0.07997079756519715,
+   "0.40": 0.1326991950774514,
+   "0.50": 0.1717791550207334
+  },
+  "L17.ffn-down": {
+   "0.25": 0.004177285254919903,
+   "0.40": 0.008608148858087349,
+   "0.50": 0.012624899096972585
+  },
+  "L18.deltanet-in": {
+   "0.25": 0.08865883014740171,
+   "0.40": 0.14733659642287472,
+   "0.50": 0.19154169320250916
+  },
+  "L18.deltanet-out": {
+   "0.25": 0.004213995347032263,
+   "0.40": 0.008691400788152736,
+   "0.50": 0.012809666862043519
+  },
+  "L18.ffn-up-gate": {
+   "0.25": 0.08552101707620065,
+   "0.40": 0.14180222027821698,
+   "0.50": 0.1844321423057027
+  },
+  "L18.ffn-down": {
+   "0.25": 0.005135304677289278,
+   "0.40": 0.010462165367366239,
+   "0.50": 0.015333509624203441
+  },
+  "L19.attn-qkv": {
+   "0.25": 0.09573748621728925,
+   "0.40": 0.15970176315613496,
+   "0.50": 0.2072120575528797
+  },
+  "L19.attn-o": {
+   "0.25": 0.008932680762643964,
+   "0.40": 0.016845714698798187,
+   "0.50": 0.0239119434433937
+  },
+  "L19.ffn-up-gate": {
+   "0.25": 0.0997106967428104,
+   "0.40": 0.1642400668261012,
+   "0.50": 0.21281391577906048
+  },
+  "L19.ffn-down": {
+   "0.25": 0.006571356904642883,
+   "0.40": 0.013257330644009151,
+   "0.50": 0.019241873507911504
+  },
+  "L20.deltanet-in": {
+   "0.25": 0.11952642966777124,
+   "0.40": 0.19822869747982266,
+   "0.50": 0.255663949953974
+  },
+  "L20.deltanet-out": {
+   "0.25": 0.004314509272268121,
+   "0.40": 0.008872559871895678,
+   "0.50": 0.013107112935534985
+  },
+  "L20.ffn-up-gate": {
+   "0.25": 0.10780897449505941,
+   "0.40": 0.17877978015268503,
+   "0.50": 0.23061511258426842
+  },
+  "L20.ffn-down": {
+   "0.25": 0.006701480953467818,
+   "0.40": 0.013542074326973186,
+   "0.50": 0.01964989261543324
+  },
+  "L21.deltanet-in": {
+   "0.25": 0.1334730442281663,
+   "0.40": 0.2213530637022189,
+   "0.50": 0.28644749571430805
+  },
+  "L21.deltanet-out": {
+   "0.25": 0.004235247187474877,
+   "0.40": 0.008408902787124055,
+   "0.50": 0.012109944521164788
+  },
+  "L21.ffn-up-gate": {
+   "0.25": 0.1102355006361603,
+   "0.40": 0.18264534099425395,
+   "0.50": 0.2363971056831499
+  },
+  "L21.ffn-down": {
+   "0.25": 0.0067085160991209635,
+   "0.40": 0.01359510589610306,
+   "0.50": 0.01973619381439646
+  },
+  "L22.deltanet-in": {
+   "0.25": 0.12631934310254836,
+   "0.40": 0.21012424074214756,
+   "0.50": 0.27220405448140556
+  },
+  "L22.deltanet-out": {
+   "0.25": 0.004183044979121973,
+   "0.40": 0.00853355159364266,
+   "0.50": 0.012607294030872723
+  },
+  "L22.ffn-up-gate": {
+   "0.25": 0.11230122965136363,
+   "0.40": 0.18650133734446322,
+   "0.50": 0.24105160107864448
+  },
+  "L22.ffn-down": {
+   "0.25": 0.007279763394335999,
+   "0.40": 0.014690573166006802,
+   "0.50": 0.021256637552576264
+  },
+  "L23.attn-qkv": {
+   "0.25": 0.1102748226082435,
+   "0.40": 0.18386574651468726,
+   "0.50": 0.2391240089971312
+  },
+  "L23.attn-o": {
+   "0.25": 0.01083620001873864,
+   "0.40": 0.020531981454300897,
+   "0.50": 0.029337815348280387
+  },
+  "L23.ffn-up-gate": {
+   "0.25": 0.1174207564716544,
+   "0.40": 0.19437266054816266,
+   "0.50": 0.25206940551557533
+  },
+  "L23.ffn-down": {
+   "0.25": 0.008094706294592312,
+   "0.40": 0.016238151149230138,
+   "0.50": 0.023373707768866655
+  },
+  "L24.deltanet-in": {
+   "0.25": 0.11868465360314706,
+   "0.40": 0.1976648237931011,
+   "0.50": 0.25549033714699093
+  },
+  "L24.deltanet-out": {
+   "0.25": 0.005378896822600522,
+   "0.40": 0.01140386679629422,
+   "0.50": 0.01706975248566353
+  },
+  "L24.ffn-up-gate": {
+   "0.25": 0.12185830756696203,
+   "0.40": 0.20212700076993548,
+   "0.50": 0.261159633115937
+  },
+  "L24.ffn-down": {
+   "0.25": 0.009354107142562077,
+   "0.40": 0.01857902984981877,
+   "0.50": 0.026584814584906732
+  },
+  "L25.deltanet-in": {
+   "0.25": 0.12046743898369282,
+   "0.40": 0.20004511231049224,
+   "0.50": 0.2599542407381723
+  },
+  "L25.deltanet-out": {
+   "0.25": 0.0071757280370011575,
+   "0.40": 0.014916525893781485,
+   "0.50": 0.0220583951970352
+  },
+  "L25.ffn-up-gate": {
+   "0.25": 0.12244497469014984,
+   "0.40": 0.20277691578437396,
+   "0.50": 0.26167519120072613
+  },
+  "L25.ffn-down": {
+   "0.25": 0.00955708888432261,
+   "0.40": 0.019009793166711905,
+   "0.50": 0.027279775246224106
+  },
+  "L26.deltanet-in": {
+   "0.25": 0.11456314941653961,
+   "0.40": 0.19023488220261117,
+   "0.50": 0.2470439055330956
+  },
+  "L26.deltanet-out": {
+   "0.25": 0.007085192427698315,
+   "0.40": 0.014998918576493122,
+   "0.50": 0.02257278030617936
+  },
+  "L26.ffn-up-gate": {
+   "0.25": 0.12121142043894154,
+   "0.40": 0.20037251034441536,
+   "0.50": 0.25942127025278716
+  },
+  "L26.ffn-down": {
+   "0.25": 0.010540953883154826,
+   "0.40": 0.02085141189425392,
+   "0.50": 0.02979271729223414
+  },
+  "L27.attn-qkv": {
+   "0.25": 0.1138011707972706,
+   "0.40": 0.1888050338487591,
+   "0.50": 0.24502418444376026
+  },
+  "L27.attn-o": {
+   "0.25": 0.027420809762168645,
+   "0.40": 0.050157564549453755,
+   "0.50": 0.06971669338929552
+  },
+  "L27.ffn-up-gate": {
+   "0.25": 0.13228622458350453,
+   "0.40": 0.218149005408161,
+   "0.50": 0.2812516525802608
+  },
+  "L27.ffn-down": {
+   "0.25": 0.013702032697947033,
+   "0.40": 0.02648970783084366,
+   "0.50": 0.037425941336014096
+  },
+  "L28.deltanet-in": {
+   "0.25": 0.12134854719704648,
+   "0.40": 0.20068358290615318,
+   "0.50": 0.25967934593294817
+  },
+  "L28.deltanet-out": {
+   "0.25": 0.009954504407257477,
+   "0.40": 0.02085347516881331,
+   "0.50": 0.031085931201714257
+  },
+  "L28.ffn-up-gate": {
+   "0.25": 0.1326841242764296,
+   "0.40": 0.21884495353159958,
+   "0.50": 0.2821597473689974
+  },
+  "L28.ffn-down": {
+   "0.25": 0.013883452597789994,
+   "0.40": 0.026868838158428172,
+   "0.50": 0.03799869982124781
+  },
+  "L29.deltanet-in": {
+   "0.25": 0.13068167538890998,
+   "0.40": 0.21617792686976317,
+   "0.50": 0.2799997806341093
+  },
+  "L29.deltanet-out": {
+   "0.25": 0.009473866837395126,
+   "0.40": 0.019911727170513874,
+   "0.50": 0.029719524149861495
+  },
+  "L29.ffn-up-gate": {
+   "0.25": 0.1343165655921286,
+   "0.40": 0.22234942502772898,
+   "0.50": 0.2861218522686151
+  },
+  "L29.ffn-down": {
+   "0.25": 0.014152771404108096,
+   "0.40": 0.02748398258483674,
+   "0.50": 0.03881585877340708
+  },
+  "L30.deltanet-in": {
+   "0.25": 0.12889727530113945,
+   "0.40": 0.21259258994773858,
+   "0.50": 0.2743552728134451
+  },
+  "L30.deltanet-out": {
+   "0.25": 0.009531562286614633,
+   "0.40": 0.02077720023431629,
+   "0.50": 0.03189233672772351
+  },
+  "L30.ffn-up-gate": {
+   "0.25": 0.1341721236984032,
+   "0.40": 0.22205002275165064,
+   "0.50": 0.28589401229685246
+  },
+  "L30.ffn-down": {
+   "0.25": 0.01432919166264147,
+   "0.40": 0.0279469018197477,
+   "0.50": 0.03951161973424284
+  },
+  "L31.attn-qkv": {
+   "0.25": 0.1307783841203064,
+   "0.40": 0.2165105689380077,
+   "0.50": 0.2803430598965499
+  },
+  "L31.attn-o": {
+   "0.25": 0.03488716805958049,
+   "0.40": 0.06478465174983425,
+   "0.50": 0.09070955844618593
+  },
+  "L31.ffn-up-gate": {
+   "0.25": 0.14182892084377996,
+   "0.40": 0.23478442641758743,
+   "0.50": 0.3027796863721623
+  },
+  "L31.ffn-down": {
+   "0.25": 0.01598380433564199,
+   "0.40": 0.03113214738735049,
+   "0.50": 0.04381615864120786
+  },
+  "L32.deltanet-in": {
+   "0.25": 0.137802538856363,
+   "0.40": 0.22692852508459024,
+   "0.50": 0.2942203385250933
+  },
+  "L32.deltanet-out": {
+   "0.25": 0.011783367448711607,
+   "0.40": 0.024849421164826833,
+   "0.50": 0.03710945520792599
+  },
+  "L32.ffn-up-gate": {
+   "0.25": 0.14769297542230184,
+   "0.40": 0.2439390875217943,
+   "0.50": 0.3140826184317057
+  },
+  "L32.ffn-down": {
+   "0.25": 0.016852073956013007,
+   "0.40": 0.03270407186211205,
+   "0.50": 0.04592293413314448
+  },
+  "L33.deltanet-in": {
+   "0.25": 0.1498505686726508,
+   "0.40": 0.24769399853989701,
+   "0.50": 0.3191949407895639
+  },
+  "L33.deltanet-out": {
+   "0.25": 0.012663209531449624,
+   "0.40": 0.026822926802069057,
+   "0.50": 0.04024068966174816
+  },
+  "L33.ffn-up-gate": {
+   "0.25": 0.15112658326280726,
+   "0.40": 0.2502205552298324,
+   "0.50": 0.3215241144690033
+  },
+  "L33.ffn-down": {
+   "0.25": 0.016963625342585286,
+   "0.40": 0.03281641421513565,
+   "0.50": 0.04604689111298479
+  },
+  "L34.deltanet-in": {
+   "0.25": 0.14974177000744254,
+   "0.40": 0.24758321418106508,
+   "0.50": 0.31894770584169935
+  },
+  "L34.deltanet-out": {
+   "0.25": 0.012203592055902655,
+   "0.40": 0.025344197833573695,
+   "0.50": 0.0378396957179557
+  },
+  "L34.ffn-up-gate": {
+   "0.25": 0.1527437106595449,
+   "0.40": 0.25262573820778045,
+   "0.50": 0.3253109687420885
+  },
+  "L34.ffn-down": {
+   "0.25": 0.01926478482836158,
+   "0.40": 0.03683582423231846,
+   "0.50": 0.051564786545419135
+  },
+  "L35.attn-qkv": {
+   "0.25": 0.1620892879130039,
+   "0.40": 0.2673926829165189,
+   "0.50": 0.3451948894304674
+  },
+  "L35.attn-o": {
+   "0.25": 0.040909651415931766,
+   "0.40": 0.07650352869955888,
+   "0.50": 0.10699042456326689
+  },
+  "L35.ffn-up-gate": {
+   "0.25": 0.16581780706094953,
+   "0.40": 0.2733180725986961,
+   "0.50": 0.35296399948008383
+  },
+  "L35.ffn-down": {
+   "0.25": 0.02278925897980227,
+   "0.40": 0.04266724211732717,
+   "0.50": 0.05855006110332698
+  },
+  "L36.deltanet-in": {
+   "0.25": 0.18321294028918483,
+   "0.40": 0.3022536023555366,
+   "0.50": 0.3908572867930167
+  },
+  "L36.deltanet-out": {
+   "0.25": 0.008785578180788492,
+   "0.40": 0.01768458223392788,
+   "0.50": 0.025790255480940986
+  },
+  "L36.ffn-up-gate": {
+   "0.25": 0.17063488895784734,
+   "0.40": 0.2814236065437777,
+   "0.50": 0.36338278898244547
+  },
+  "L36.ffn-down": {
+   "0.25": 0.020896891010992673,
+   "0.40": 0.03921900750176866,
+   "0.50": 0.05414902783520057
+  },
+  "L37.deltanet-in": {
+   "0.25": 0.193052098184041,
+   "0.40": 0.31872697474308986,
+   "0.50": 0.41266836308047167
+  },
+  "L37.deltanet-out": {
+   "0.25": 0.008393231924662568,
+   "0.40": 0.015928055939946183,
+   "0.50": 0.02247250212191255
+  },
+  "L37.ffn-up-gate": {
+   "0.25": 0.16633643188472141,
+   "0.40": 0.27419413352550775,
+   "0.50": 0.35427180240587025
+  },
+  "L37.ffn-down": {
+   "0.25": 0.01809423291126586,
+   "0.40": 0.03447459681774548,
+   "0.50": 0.048112672358468354
+  },
+  "L38.deltanet-in": {
+   "0.25": 0.18565843386221056,
+   "0.40": 0.3057884181054016,
+   "0.50": 0.3959527488981473
+  },
+  "L38.deltanet-out": {
+   "0.25": 0.007573399872419757,
+   "0.40": 0.0143681479554784,
+   "0.50": 0.02033326302399714
+  },
+  "L38.ffn-up-gate": {
+   "0.25": 0.1726934357679072,
+   "0.40": 0.28501233252364455,
+   "0.50": 0.36880263280393044
+  },
+  "L38.ffn-down": {
+   "0.25": 0.020870742746439526,
+   "0.40": 0.038740737874606114,
+   "0.50": 0.0531621347047034
+  },
+  "L39.attn-qkv": {
+   "0.25": 0.1610195631041847,
+   "0.40": 0.2661444371858818,
+   "0.50": 0.34384406210881924
+  },
+  "L39.attn-o": {
+   "0.25": 0.029891732766142407,
+   "0.40": 0.05838872112341549,
+   "0.50": 0.08418250368874337
+  },
+  "L39.ffn-up-gate": {
+   "0.25": 0.1696769388422399,
+   "0.40": 0.28020174573452933,
+   "0.50": 0.36182744035187575
+  },
+  "L39.ffn-down": {
+   "0.25": 0.020937949482613183,
+   "0.40": 0.038794206524215176,
+   "0.50": 0.05316936269399278
+  },
+  "L40.deltanet-in": {
+   "0.25": 0.167934930238001,
+   "0.40": 0.27849920619031526,
+   "0.50": 0.3599600239975298
+  },
+  "L40.deltanet-out": {
+   "0.25": 0.006695174315574795,
+   "0.40": 0.01409480817686275,
+   "0.50": 0.021048826923033857
+  },
+  "L40.ffn-up-gate": {
+   "0.25": 0.16917073175634714,
+   "0.40": 0.279836548268782,
+   "0.50": 0.36095318317738384
+  },
+  "L40.ffn-down": {
+   "0.25": 0.02144300804160876,
+   "0.40": 0.03944084784005778,
+   "0.50": 0.05378648082175239
+  },
+  "L41.deltanet-in": {
+   "0.25": 0.16210937927312438,
+   "0.40": 0.2677689871244467,
+   "0.50": 0.34622566970275176
+  },
+  "L41.deltanet-out": {
+   "0.25": 0.007896145155940499,
+   "0.40": 0.016351654999446585,
+   "0.50": 0.02430595597170139
+  },
+  "L41.ffn-up-gate": {
+   "0.25": 0.16123558026652834,
+   "0.40": 0.2662127860270254,
+   "0.50": 0.3429634347192979
+  },
+  "L41.ffn-down": {
+   "0.25": 0.017364727160742718,
+   "0.40": 0.03290139710553389,
+   "0.50": 0.04580630606656552
+  },
+  "L42.deltanet-in": {
+   "0.25": 0.15230172403526127,
+   "0.40": 0.25244209786302124,
+   "0.50": 0.32589799852017537
+  },
+  "L42.deltanet-out": {
+   "0.25": 0.008297360272142602,
+   "0.40": 0.017449029085918794,
+   "0.50": 0.026046921876839227
+  },
+  "L42.ffn-up-gate": {
+   "0.25": 0.15413183898364263,
+   "0.40": 0.2546396911759418,
+   "0.50": 0.3290379521975424
+  },
+  "L42.ffn-down": {
+   "0.25": 0.016482689617727045,
+   "0.40": 0.03183833921272456,
+   "0.50": 0.04472506910561377
+  },
+  "L43.attn-qkv": {
+   "0.25": 0.14976330516593195,
+   "0.40": 0.24795450941098102,
+   "0.50": 0.3203365634239179
+  },
+  "L43.attn-o": {
+   "0.25": 0.04152888105100823,
+   "0.40": 0.07785804340631179,
+   "0.50": 0.10947622997286599
+  },
+  "L43.ffn-up-gate": {
+   "0.25": 0.16277148077177636,
+   "0.40": 0.2689180486473075,
+   "0.50": 0.34725712220125
+  },
+  "L43.ffn-down": {
+   "0.25": 0.019750330957082264,
+   "0.40": 0.037620398996236926,
+   "0.50": 0.05225800531085414
+  },
+  "L44.deltanet-in": {
+   "0.25": 0.15262240888740733,
+   "0.40": 0.2525991568134312,
+   "0.50": 0.3257170322583684
+  },
+  "L44.deltanet-out": {
+   "0.25": 0.011248098072521013,
+   "0.40": 0.023582865253499202,
+   "0.50": 0.03540143630323533
+  },
+  "L44.ffn-up-gate": {
+   "0.25": 0.16417180605599244,
+   "0.40": 0.2712492477134415,
+   "0.50": 0.35080770474823686
+  },
+  "L44.ffn-down": {
+   "0.25": 0.020107517181972408,
+   "0.40": 0.03843895302124503,
+   "0.50": 0.05343401362560123
+  },
+  "L45.deltanet-in": {
+   "0.25": 0.1621362568441887,
+   "0.40": 0.2675048934067754,
+   "0.50": 0.3451361456527718
+  },
+  "L45.deltanet-out": {
+   "0.25": 0.008688475100743094,
+   "0.40": 0.018381161835473128,
+   "0.50": 0.027558318379708416
+  },
+  "L45.ffn-up-gate": {
+   "0.25": 0.16569977415827508,
+   "0.40": 0.27328296114606127,
+   "0.50": 0.35292720899040103
+  },
+  "L45.ffn-down": {
+   "0.25": 0.019930506014310834,
+   "0.40": 0.038194947778241055,
+   "0.50": 0.05329948109423363
+  },
+  "L46.deltanet-in": {
+   "0.25": 0.16158358653345833,
+   "0.40": 0.2667140755190338,
+   "0.50": 0.3440419287017932
+  },
+  "L46.deltanet-out": {
+   "0.25": 0.009073137025460167,
+   "0.40": 0.020423791933164914,
+   "0.50": 0.032047856871077175
+  },
+  "L46.ffn-up-gate": {
+   "0.25": 0.16606623050394415,
+   "0.40": 0.2737979952741981,
+   "0.50": 0.3534087476876254
+  },
+  "L46.ffn-down": {
+   "0.25": 0.020089722464597233,
+   "0.40": 0.03869680194828981,
+   "0.50": 0.05420744061708892
+  },
+  "L47.attn-qkv": {
+   "0.25": 0.1766861225479076,
+   "0.40": 0.29247162348170525,
+   "0.50": 0.376441953671243
+  },
+  "L47.attn-o": {
+   "0.25": 0.032773558688283286,
+   "0.40": 0.06296086791971411,
+   "0.50": 0.09065242325717765
+  },
+  "L47.ffn-up-gate": {
+   "0.25": 0.1826799480197993,
+   "0.40": 0.30148402015132797,
+   "0.50": 0.3887113623146698
+  },
+  "L47.ffn-down": {
+   "0.25": 0.023764764216570963,
+   "0.40": 0.04539281171721552,
+   "0.50": 0.06303718459079773
+  },
+  "L48.deltanet-in": {
+   "0.25": 0.1779860790085363,
+   "0.40": 0.2938434452859786,
+   "0.50": 0.37845659865689524
+  },
+  "L48.deltanet-out": {
+   "0.25": 0.011867701532427326,
+   "0.40": 0.024815024802491266,
+   "0.50": 0.03738297157991187
+  },
+  "L48.ffn-up-gate": {
+   "0.25": 0.18826148501664092,
+   "0.40": 0.31067444354050794,
+   "0.50": 0.4017265050727568
+  },
+  "L48.ffn-down": {
+   "0.25": 0.026282747986494204,
+   "0.40": 0.049927757122644044,
+   "0.50": 0.06921314125041111
+  },
+  "L49.deltanet-in": {
+   "0.25": 0.189743399074689,
+   "0.40": 0.31314802352068793,
+   "0.50": 0.4050576541471554
+  },
+  "L49.deltanet-out": {
+   "0.25": 0.012474681891733059,
+   "0.40": 0.0272130585738037,
+   "0.50": 0.04170203016913124
+  },
+  "L49.ffn-up-gate": {
+   "0.25": 0.19238200968857708,
+   "0.40": 0.31657297651246435,
+   "0.50": 0.4090604101589455
+  },
+  "L49.ffn-down": {
+   "0.25": 0.027738009851419762,
+   "0.40": 0.05237435059972135,
+   "0.50": 0.07271950977671775
+  },
+  "L50.deltanet-in": {
+   "0.25": 0.19370003313400952,
+   "0.40": 0.319806198813265,
+   "0.50": 0.4133245034395661
+  },
+  "L50.deltanet-out": {
+   "0.25": 0.015570207716168535,
+   "0.40": 0.03277576628473269,
+   "0.50": 0.049340712874142864
+  },
+  "L50.ffn-up-gate": {
+   "0.25": 0.20208156449243586,
+   "0.40": 0.33314850038434235,
+   "0.50": 0.4309353774192602
+  },
+  "L50.ffn-down": {
+   "0.25": 0.03308679080541376,
+   "0.40": 0.06251102296031451,
+   "0.50": 0.08678784073631106
+  },
+  "L51.attn-qkv": {
+   "0.25": 0.22321990293040558,
+   "0.40": 0.36976718307042994,
+   "0.50": 0.4786403914151349
+  },
+  "L51.attn-o": {
+   "0.25": 0.036190442561565436,
+   "0.40": 0.07421474640710703,
+   "0.50": 0.11039961533249308
+  },
+  "L51.ffn-up-gate": {
+   "0.25": 0.2279952355848797,
+   "0.40": 0.37685488200180894,
+   "0.50": 0.48670990577733686
+  },
+  "L51.ffn-down": {
+   "0.25": 0.04005197163216471,
+   "0.40": 0.0735656694708755,
+   "0.50": 0.10046379711531249
+  },
+  "L52.deltanet-in": {
+   "0.25": 0.24593855596796058,
+   "0.40": 0.4064019316024412,
+   "0.50": 0.5254844642296077
+  },
+  "L52.deltanet-out": {
+   "0.25": 0.014145832944682538,
+   "0.40": 0.028746136062191043,
+   "0.50": 0.04273697188977328
+  },
+  "L52.ffn-up-gate": {
+   "0.25": 0.24189592810561522,
+   "0.40": 0.400325826743702,
+   "0.50": 0.5150534426894077
+  },
+  "L52.ffn-down": {
+   "0.25": 0.041822846738535834,
+   "0.40": 0.07507883677062818,
+   "0.50": 0.10198991415535179
+  },
+  "L53.deltanet-in": {
+   "0.25": 0.25231935640577946,
+   "0.40": 0.41679586542172614,
+   "0.50": 0.5395767836885934
+  },
+  "L53.deltanet-out": {
+   "0.25": 0.014105596109383422,
+   "0.40": 0.027789243363294913,
+   "0.50": 0.04012747231044863
+  },
+  "L53.ffn-up-gate": {
+   "0.25": 0.2511882513367449,
+   "0.40": 0.41375449171535533,
+   "0.50": 0.5365398683998137
+  },
+  "L53.ffn-down": {
+   "0.25": 0.042508501441101826,
+   "0.40": 0.07689255648536356,
+   "0.50": 0.10401503294485465
+  },
+  "L54.deltanet-in": {
+   "0.25": 0.25509673310193015,
+   "0.40": 0.4231004503379068,
+   "0.50": 0.54589130021353
+  },
+  "L54.deltanet-out": {
+   "0.25": 0.011660851320997773,
+   "0.40": 0.023426767074041475,
+   "0.50": 0.03438386245361734
+  },
+  "L54.ffn-up-gate": {
+   "0.25": 0.27015326433131004,
+   "0.40": 0.4461033498789172,
+   "0.50": 0.5759763256645937
+  },
+  "L54.ffn-down": {
+   "0.25": 0.0488982437062371,
+   "0.40": 0.0867449848331816,
+   "0.50": 0.11706394391992733
+  },
+  "L55.attn-qkv": {
+   "0.25": 0.24383172690246657,
+   "0.40": 0.4044433078088359,
+   "0.50": 0.5228867038318432
+  },
+  "L55.attn-o": {
+   "0.25": 0.027822357320350023,
+   "0.40": 0.05969864920011458,
+   "0.50": 0.09030035203063583
+  },
+  "L55.ffn-up-gate": {
+   "0.25": 0.27013586140061885,
+   "0.40": 0.445779002513555,
+   "0.50": 0.5755289912533738
+  },
+  "L55.ffn-down": {
+   "0.25": 0.04747290811656778,
+   "0.40": 0.08402231260809932,
+   "0.50": 0.11233412951130331
+  },
+  "L56.deltanet-in": {
+   "0.25": 0.26091832932917003,
+   "0.40": 0.43150751180632996,
+   "0.50": 0.559231310866334
+  },
+  "L56.deltanet-out": {
+   "0.25": 0.01629502750435099,
+   "0.40": 0.03256480445772297,
+   "0.50": 0.04727642468255774
+  },
+  "L56.ffn-up-gate": {
+   "0.25": 0.2774310767313798,
+   "0.40": 0.45760470191289393,
+   "0.50": 0.592529549522493
+  },
+  "L56.ffn-down": {
+   "0.25": 0.047561940769118405,
+   "0.40": 0.0840340195599353,
+   "0.50": 0.11227204029933144
+  },
+  "L57.deltanet-in": {
+   "0.25": 0.26763979792841214,
+   "0.40": 0.44222286197937655,
+   "0.50": 0.5711998333056353
+  },
+  "L57.deltanet-out": {
+   "0.25": 0.014205280132473401,
+   "0.40": 0.02897580723334242,
+   "0.50": 0.04280490654393028
+  },
+  "L57.ffn-up-gate": {
+   "0.25": 0.29169614674140765,
+   "0.40": 0.48161418685597385,
+   "0.50": 0.6211315307287991
+  },
+  "L57.ffn-down": {
+   "0.25": 0.04779429753474819,
+   "0.40": 0.08423489819989924,
+   "0.50": 0.11251451822213507
+  },
+  "L58.deltanet-in": {
+   "0.25": 0.2679778608268177,
+   "0.40": 0.44304795244064676,
+   "0.50": 0.5720009936771626
+  },
+  "L58.deltanet-out": {
+   "0.25": 0.01182110326230069,
+   "0.40": 0.023923372826487772,
+   "0.50": 0.03546940547796221
+  },
+  "L58.ffn-up-gate": {
+   "0.25": 0.30750333942051433,
+   "0.40": 0.508912403015139,
+   "0.50": 0.6576178328623713
+  },
+  "L58.ffn-down": {
+   "0.25": 0.04907431305191734,
+   "0.40": 0.08638281329522991,
+   "0.50": 0.1165745697150274
+  },
+  "L59.attn-qkv": {
+   "0.25": 0.26760083191328465,
+   "0.40": 0.44376820075504547,
+   "0.50": 0.5755264600837802
+  },
+  "L59.attn-o": {
+   "0.25": 0.057630938969356366,
+   "0.40": 0.1183725143739151,
+   "0.50": 0.17325243068685695
+  },
+  "L59.ffn-up-gate": {
+   "0.25": 0.31702382685218544,
+   "0.40": 0.524939305547462,
+   "0.50": 0.6779701291361916
+  },
+  "L59.ffn-down": {
+   "0.25": 0.051686557337051124,
+   "0.40": 0.09134859406411854,
+   "0.50": 0.12359340692624055
+  },
+  "L60.deltanet-in": {
+   "0.25": 0.28860168769796185,
+   "0.40": 0.4785034679496629,
+   "0.50": 0.6176881182397668
+  },
+  "L60.deltanet-out": {
+   "0.25": 0.015083337282999553,
+   "0.40": 0.031121717622385272,
+   "0.50": 0.04678077995599307
+  },
+  "L60.ffn-up-gate": {
+   "0.25": 0.3160132578277503,
+   "0.40": 0.5230777710185448,
+   "0.50": 0.6752102596301944
+  },
+  "L60.ffn-down": {
+   "0.25": 0.05345636266506078,
+   "0.40": 0.09508534131905086,
+   "0.50": 0.12904132375363714
+  },
+  "L61.deltanet-in": {
+   "0.25": 0.26976792220940354,
+   "0.40": 0.44529618347830396,
+   "0.50": 0.5743154671627294
+  },
+  "L61.deltanet-out": {
+   "0.25": 0.01542280168568208,
+   "0.40": 0.03125007361635034,
+   "0.50": 0.046606134012600595
+  },
+  "L61.ffn-up-gate": {
+   "0.25": 0.3235065086360984,
+   "0.40": 0.5366370815512751,
+   "0.50": 0.691982813910273
+  },
+  "L61.ffn-down": {
+   "0.25": 0.05228112399561285,
+   "0.40": 0.09414372340557185,
+   "0.50": 0.12941327175993944
+  },
+  "L62.deltanet-in": {
+   "0.25": 0.27291160509649726,
+   "0.40": 0.452138496372436,
+   "0.50": 0.5825179709096788
+  },
+  "L62.deltanet-out": {
+   "0.25": 0.027948276973269848,
+   "0.40": 0.05688820407601795,
+   "0.50": 0.0846110045176379
+  },
+  "L62.ffn-up-gate": {
+   "0.25": 0.31997095475107645,
+   "0.40": 0.5282408898354035,
+   "0.50": 0.6835473201091771
+  },
+  "L62.ffn-down": {
+   "0.25": 0.06100010659230835,
+   "0.40": 0.11181732569937528,
+   "0.50": 0.1542123645738291
+  },
+  "L63.attn-qkv": {
+   "0.25": 0.29247387364504446,
+   "0.40": 0.4824176359985182,
+   "0.50": 0.6223768044475444
+  },
+  "L63.attn-o": {
+   "0.25": 0.07771619004676879,
+   "0.40": 0.16650638046157182,
+   "0.50": 0.25314501341205864
+  },
+  "L63.ffn-up-gate": {
+   "0.25": 0.2992485136226074,
+   "0.40": 0.49299618740637907,
+   "0.50": 0.6363469316158276
+  },
+  "L63.ffn-down": {
+   "0.25": 0.06592185971898692,
+   "0.40": 0.12453818766265277,
+   "0.50": 0.1777844853187667
+  }
+ }
+}
