@@ -1,0 +1,16 @@
+[project]
+name = "sparse-spec-metal"
+version = "0.0.0"
+description = "Sparsity-aware speculative (MTP) decoding for dense LLMs on Apple Silicon — investigation"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "mlx>=0.32.2",
+    "mlx-lm>=0.31.3",
+    "mlx-vlm>=0.6.17",
+    "numpy>=2.0",
+    "huggingface-hub>=0.35",
+    "datasets>=3.0",
+]
+
+[tool.uv]
+package = false
